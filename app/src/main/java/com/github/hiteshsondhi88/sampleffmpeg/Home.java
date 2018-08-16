@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import dagger.ObjectGraph;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
@@ -33,13 +33,13 @@ public class Home extends Activity implements View.OnClickListener {
     @Inject
     FFmpeg ffmpeg;
 
-    @InjectView(R.id.command)
+    @BindView(R.id.command)
     EditText commandEditText;
 
-    @InjectView(R.id.command_output)
+    @BindView(R.id.command_output)
     LinearLayout outputLayout;
 
-    @InjectView(R.id.run_command)
+    @BindView(R.id.run_command)
     Button runButton;
 
     private ProgressDialog progressDialog;
@@ -48,7 +48,7 @@ public class Home extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         ObjectGraph.create(new DaggerDependencyModule(this)).inject(this);
 
         loadFFMpegBinary();
